@@ -41,6 +41,6 @@ export class BannerComponent implements OnInit {
       this.banners[indexVisivel].estado = 'visivel'
       indexEscondido == this.banners.length - 1? indexEscondido = 0: indexEscondido++
       indexVisivel = indexEscondido == this.banners.length - 1? 0 : indexEscondido+1;
-    },800)
+    },3000)
   }
 }
