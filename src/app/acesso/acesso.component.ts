@@ -8,11 +8,22 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('bannerAcesso', [
       state('void', style({
-        left: '-100px',
+        transform: 'translateX(-100px)',
         opacity: 0
       })),
       state('criado', style({
-        left: 0,
+        transform: 'translateX(0)',
+        opacity: 1
+      })),
+      transition('void => criado', animate('0.5s 0.5s ease-in-out'))
+    ]),
+    trigger('painel', [
+      state('void', style({
+        transform: 'translateX(50px)',
+        opacity: 0
+      })),
+      state('criado', style({
+        transform: 'translateX(0)',
         opacity: 1
       })),
       transition('void => criado', animate('0.5s 0.5s ease-in-out'))
@@ -21,6 +32,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class AcessoComponent implements OnInit {
   public estadoBannerAcesso: string ='criado'
+  public estadoPainel: string ='criado'
   constructor() { }
 
   ngOnInit() {
