@@ -38,5 +38,7 @@ export class AcessoComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public exibirCadastro($event) {
+    this.cadastro = $event == 'cadastro'? true: false
+  }
 }
