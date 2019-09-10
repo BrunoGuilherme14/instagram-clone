@@ -4,8 +4,13 @@
       <app-banner [@bannerAcesso]="estadoBannerAcesso"></app-banner>
     </div>
 
-    <div class="col-sm-6 d-flex justify-content-center justify-content-sm-start order-first order-sm-last">
-		  <app-login [@painel]="estadoPainel" ></app-login>
+    <div *ngIf="cadastro; else formLogin" class="col-sm-6 d-flex justify-content-center justify-content-sm-start order-first order-sm-last" >
+      <app-cadastro [@painel]="estadoPainel" ></app-cadastro>
     </div>  
+    <ng-template #formLogin>
+      <div class="col-sm-6 d-flex justify-content-center justify-content-sm-start order-first order-sm-last">
+        <app-login [@painel]="estadoPainel" ></app-login>
+      </div>  
+    </ng-template>
   </div>
 </div>

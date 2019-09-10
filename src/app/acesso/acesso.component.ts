@@ -33,6 +33,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class AcessoComponent implements OnInit {
   public estadoBannerAcesso: string ='criado'
   public estadoPainel: string ='criado'
+  public cadastro: boolean
   constructor() { }
 
   ngOnInit() {
