@@ -24,16 +24,9 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
       })),
       transition('void => criado', [
         style({transform: 'translateX(50px)', opacity: 0 }),
-        animate('1.5s 0s ease-in-out', keyframes([
-          style({ offset:0.15, opacity: 1, transform: 'translateX(0)'  }),
-          style({ offset:0.85, opacity: 1, transform: 'translateX(0)'  }),
-          style({ offset:0.86, opacity: 1, transform: 'translateY(-5px)' }),
-          style({ offset:0.90, opacity: 1, transform: 'translateY(5px)' }),
-          style({ offset:0.92, opacity: 1, transform: 'translateY(-5px)' }),
-          style({ offset:0.94, opacity: 1, transform: 'translateY(5px)' }),
-          style({ offset:0.96, opacity: 1, transform: 'translateY(-5px)' }),
-          style({ offset:0.98, opacity: 1, transform: 'translateY(5px)' }),
-          style({ offset:1, opacity: 1, transform: 'translateY(0)' })
+        animate('0.5s 0.5s ease-in-out', keyframes([
+          style({ offset:1, opacity: 1, transform: 'translateX(0)'  })
+          //Aqui pode ser adicionado vários styles
         ]))
       ])
     ])
