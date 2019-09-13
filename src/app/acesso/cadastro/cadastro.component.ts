@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Cadastro } from './cadastro.model';
+import { Usuario } from 'src/app/model/usuario.model';
 
 @Component({
   selector: 'app-cadastro',
@@ -25,7 +25,7 @@ export class CadastroComponent implements OnInit {
   public cadastrar(): void {
     this.formCadastro.markAllAsTouched()
     if(this.formCadastro.valid) {
-      const formValues: Cadastro = new Cadastro(this.formCadastro.value.email, this.formCadastro.value.nome, this.formCadastro.value.usuario, this.formCadastro.value.senha)
+      const formValues: Usuario = new Usuario(this.formCadastro.value.email, this.formCadastro.value.nome, this.formCadastro.value.usuario, this.formCadastro.value.senha)
       console.log(formValues)
     }
   }
