@@ -27,6 +27,12 @@ export class Autenticacao {
             console.log(error)
         })
     }
+    public logout(): Promise<void> {
+        return firebase.auth().signOut().then(res=> {
+            this.token_id = undefined
+            localStorage.removeItem('idToken')
+        })
+    }
     public getIdToken(): string {
         return this.token_id || localStorage.getItem('idToken')
     }
