@@ -15,7 +15,7 @@ export class CadastroComponent implements OnInit {
     'email': new FormControl(null, [Validators.required, Validators.email]),
     'nome': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.pattern("[a-zA-Z ]*")]),
     'usuario': new FormControl(null, [Validators.required]),
-    'senha': new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    'senha': new FormControl(null, [Validators.required, Validators.minLength(6)])
   });
 
   constructor(private autenticacao: Autenticacao) { }
