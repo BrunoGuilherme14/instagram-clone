@@ -12,7 +12,8 @@ import * as firebase from 'firebase';
 })
 export class CadastroComponent implements OnInit {
   @Output('exibir') exibir: EventEmitter<string> = new EventEmitter<string>();
-  
+  public mensagemErro: string
+
   public formCadastro: FormGroup = new FormGroup({
     'email': new FormControl(null, [Validators.required, Validators.email]),
     'nome': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.pattern("[a-zA-Z ]*")]),
@@ -34,8 +35,8 @@ export class CadastroComponent implements OnInit {
       this.autenticacao.cadastrarUsuario(usuario).then(res =>{
           this.autenticacao.setUsuarioDatabase(usuario)
           this.clickLogin()
-      }).catch(error=>{
-          console.log(error);
+      }).catch((error: Error)=>{
+        this.mensagemErro = error.message
       });
     }
   }
