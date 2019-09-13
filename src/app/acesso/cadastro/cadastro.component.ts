@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario.model';
-import { Autenticacao } from 'src/app/services/autenticacao.service.model';
+import { Autenticacao } from 'src/app/services/autenticacao.service';
 
 import * as firebase from 'firebase';
 

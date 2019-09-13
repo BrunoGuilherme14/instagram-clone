@@ -11,7 +11,7 @@ import { BannerComponent } from './acesso/banner/banner.component';
 import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 
-import { Autenticacao } from './services/autenticacao.service.model';
+import { Autenticacao } from './services/autenticacao.service';
 
 import { format } from 'url';
 import { from } from 'rxjs';
