@@ -25,7 +25,7 @@ export class CadastroComponent implements OnInit {
   public clickLogin(): void {
     this.exibir.emit('login')
   }
-  public cadastrar(): void {
+  public submitCadastrar(): void {
     this.formCadastro.markAllAsTouched()
     if(this.formCadastro.valid) {
       const usuario: Usuario = new Usuario(this.formCadastro.value.email, this.formCadastro.value.nome, this.formCadastro.value.usuario, this.formCadastro.value.senha)
