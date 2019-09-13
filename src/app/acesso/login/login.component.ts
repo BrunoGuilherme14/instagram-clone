@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Login } from 'src/app/model/login.model';
 import { Autenticacao } from 'src/app/services/autenticacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     'senha': new FormControl(null, [Validators.required, Validators.minLength(6)])
   })
 
-  constructor(private autenticacao: Autenticacao) { }
+  constructor(private autenticacao: Autenticacao, private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
       const info = new Login(this.formLogin.value.email, this.formLogin.value.senha)
       this.autenticacao.login(info).then(res=>{
         this.autenticacao.setIdToken()
+        this.router.navigate(['/home'])
       }).catch(error=>{
           console.log(error);
       });

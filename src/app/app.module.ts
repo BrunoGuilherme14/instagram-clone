@@ -12,11 +12,13 @@ import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 
 import { Autenticacao } from './services/autenticacao.service';
+import { AutenticacaoGuard } from './services/autenticacao-guard.service';
 
 import { format } from 'url';
 import { from } from 'rxjs';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './publicacoes/publicacoes.component';
+
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { PublicacoesComponent } from './publicacoes/publicacoes.component';
     ReactiveFormsModule
   ],
   providers: [
-    Autenticacao
+    Autenticacao,
+    AutenticacaoGuard
   ],
   bootstrap: [AppComponent]
 })

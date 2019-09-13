@@ -22,8 +22,12 @@ export class Autenticacao {
     public setIdToken():void {
         firebase.auth().currentUser.getIdToken().then(token=>{
             this.token_id = token
+            localStorage.setItem('idToken',this.token_id)
         }).catch(error=>{
             console.log(error)
         })
+    }
+    public getIdToken(): string {
+        return this.token_id || localStorage.getItem('idToken')
     }
 }
