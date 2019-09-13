@@ -26,7 +26,11 @@ export class LoginComponent implements OnInit {
     this.formLogin.markAllAsTouched()
     if(this.formLogin.valid) {
       const info = new Login(this.formLogin.value.email, this.formLogin.value.senha)
-      this.autenticacao.login(info);
+      this.autenticacao.login(info).then(res=>{
+        this.autenticacao.setIdToken()
+      }).catch(error=>{
+          console.log(error);
+      });
     }
   }
 }
