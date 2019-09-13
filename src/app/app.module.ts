@@ -15,6 +15,8 @@ import { Autenticacao } from './services/autenticacao.service.model';
 
 import { format } from 'url';
 import { from } from 'rxjs';
+import { HomeComponent } from './home/home.component';
+import { PublicacoesComponent } from './publicacoes/publicacoes.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { from } from 'rxjs';
     AcessoComponent,
     BannerComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    HomeComponent,
+    PublicacoesComponent
   ],
   imports: [
     BrowserModule,
