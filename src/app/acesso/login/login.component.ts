@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   @Output('exibir') exibir: EventEmitter<string> = new EventEmitter<string>();
+  public mensagemErro:string
   public formLogin: FormGroup = new FormGroup({
     'email': new FormControl(null, [Validators.email, Validators.required]),
     'senha': new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -30,8 +31,8 @@ export class LoginComponent implements OnInit {
       this.autenticacao.login(info).then(res=>{
         this.autenticacao.setIdToken()
         this.router.navigate(['/home'])
-      }).catch(error=>{
-          console.log(error);
+      }).catch((error: Error)=>{
+        this.mensagemErro = error.message
       });
     }
   }
