@@ -8,14 +8,8 @@ export class Autenticacao {
     /**
      * cadastrarUsuario
      */
-    public cadastrarUsuario(usuario: Usuario): void {
-        firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha).then(res =>{
-            console.log(res)
-            delete usuario.senha
-            firebase.database().ref(`usuario/`+btoa(res.user.email)).set(usuario)
-        }).catch(error=>{
-            console.log(error);
-        })
+    public cadastrarUsuario(usuario: Usuario): Promise<firebase.auth.UserCredential> {
+        return firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
     }
     public login(info: Login): void {
         firebase.auth().signInWithEmailAndPassword(info.email, info.senha).then(res=>{
@@ -23,5 +17,9 @@ export class Autenticacao {
         }).catch(error=>{
             console.log(error);
         })
+    }
+    public setUsuarioDatabase(usuario: Usuario):void {
+        delete usuario.senha
+        firebase.database().ref(`usuario/`+btoa(usuario.email)).set(usuario)
     }
 }

@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario.model';
 import { Autenticacao } from 'src/app/services/autenticacao.service.model';
 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -29,7 +31,12 @@ export class CadastroComponent implements OnInit {
     this.formCadastro.markAllAsTouched()
     if(this.formCadastro.valid) {
       const usuario: Usuario = new Usuario(this.formCadastro.value.email, this.formCadastro.value.nome, this.formCadastro.value.usuario, this.formCadastro.value.senha)
-      this.autenticacao.cadastrarUsuario(usuario);
+      this.autenticacao.cadastrarUsuario(usuario).then(res =>{
+          this.autenticacao.setUsuarioDatabase(usuario)
+          this.clickLogin()
+      }).catch(error=>{
+          console.log(error);
+      });
     }
   }
 }
