@@ -18,7 +18,9 @@ import { format } from 'url';
 import { from } from 'rxjs';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './publicacoes/publicacoes.component';
+import { IncluirPublicacaoComponent } from './incluir-publicacao/incluir-publicacao.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -29,18 +31,21 @@ import { PublicacoesComponent } from './publicacoes/publicacoes.component';
     LoginComponent,
     CadastroComponent,
     HomeComponent,
-    PublicacoesComponent
+    PublicacoesComponent,
+    IncluirPublicacaoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     Autenticacao,
     AutenticacaoGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ IncluirPublicacaoComponent ]
 })
 export class AppModule { }
