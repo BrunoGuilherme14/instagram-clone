@@ -9,15 +9,7 @@ import { NgbModalConfig, NgbModal, NgbActiveModal  } from '@ng-bootstrap/ng-boot
 })
 export class IncluirPublicacaoComponent implements OnInit {
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal) {
-    // customize default values of modals used by this component tree
-    config.backdrop = 'static';
-    config.keyboard = false;
-  }
-
-  open(content) {
-    this.modalService.open(content);
-  }
+  constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
   }

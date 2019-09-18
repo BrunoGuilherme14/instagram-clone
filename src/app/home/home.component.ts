@@ -11,7 +11,7 @@ import { IncluirPublicacaoComponent } from '../incluir-publicacao/incluir-public
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private autenticacao: Autenticacao, private router:Router, config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(private autenticacao: Autenticacao, private router:Router, private modalService: NgbModal) {
    }
 
   ngOnInit() {
