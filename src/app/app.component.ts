@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     authDomain: "instagram-clone-3bb06.firebaseapp.com",
     databaseURL: "https://instagram-clone-3bb06.firebaseio.com",
     projectId: "instagram-clone-3bb06",
-    storageBucket: "",
+    storageBucket: "instagram-clone-3bb06.appspot.com",
     messagingSenderId: "534033256843",
     appId: "1:534033256843:web:fad1e205b231559f131f8e"
   };
