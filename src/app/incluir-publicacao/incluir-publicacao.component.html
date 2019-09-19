@@ -1,14 +1,26 @@
 <div>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+        <h4 class="modal-title" id="modal-basic-title">Criar uma publicação</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
-        <p>Hello, World!</p>
-    </div>
+    <form [formGroup]="formPublicacao">
+        <input 
+            type="text" 
+            placeholder="Título da publicação"
+            class="form-control"
+            formControlName="titulo"
+        >
+        <input 
+            type="text" 
+            placeholder="Descrição da publicação"
+            class="form-control"
+            formControlName="descricao"
+        >
+    </form>
+    
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Salvar</button>
     </div>
 </div>

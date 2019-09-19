@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal, NgbActiveModal  } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-incluir-publicacao',
@@ -10,7 +11,12 @@ import { NgbModalConfig, NgbModal, NgbActiveModal  } from '@ng-bootstrap/ng-boot
 export class IncluirPublicacaoComponent implements OnInit {
 
   constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal) {}
-
+  public formPublicacao: FormGroup = new FormGroup(
+    {
+      titulo: new FormControl(null,[Validators.required]),
+      descricao: new FormControl(null,[Validators.required])
+    },
+  )
   ngOnInit() {
   }
 
