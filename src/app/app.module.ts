@@ -20,7 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './publicacoes/publicacoes.component';
 import { IncluirPublicacaoComponent } from './incluir-publicacao/incluir-publicacao.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -39,7 +39,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgbAlertModule
   ],
   providers: [
     Autenticacao,

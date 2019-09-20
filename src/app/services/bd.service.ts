@@ -6,13 +6,12 @@ import * as firebase from 'firebase';
 export class Bd {
     constructor(){}
     /**
-     * publicacao
+     * incluirPublicacao
      */
     public incluirPublicacao(publicacao: Publicacao):Promise<any> {
         console.log(publicacao)
-        const nomeImagem: number = Date.now();
         return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).push(publicacao).then(res =>{
-            firebase.storage().ref().child(`imagens/${nomeImagem}`).put(publicacao.imagem)
+            firebase.storage().ref().child(`imagens/${publicacao.nomeImagem}`).put(publicacao.imagem)
         })
     }
 }

@@ -3,6 +3,7 @@ export class Publicacao {
         public email: string,
         public titulo:string,
         public descricao:string,
+        public nomeImagem:number,
         public imagem:File
     ){ }
 }

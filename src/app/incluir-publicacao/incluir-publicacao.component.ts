@@ -15,6 +15,8 @@ import { requiredFileType } from '../util/require-file-type.validator'
 export class IncluirPublicacaoComponent implements OnInit {
 
   constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal, private bd: Bd, private cd: ChangeDetectorRef) {}
+  
+  public errorMessage: string;
   public imagem: FileList;
   public formPublicacao: FormGroup = new FormGroup(
     {
@@ -24,13 +26,18 @@ export class IncluirPublicacaoComponent implements OnInit {
     },
   )
   public submitPublicacao():void {
-    console.log(this.formPublicacao)
-    const publicacao: Publicacao = new Publicacao(firebase.auth().currentUser.email ,this.formPublicacao.value.titulo, this.formPublicacao.value.descricao, this.imagem[0]);
-    this.bd.incluirPublicacao(publicacao).then(res => {
-      console.log('Sucesso: ', res);
-    }).catch((error:Error) => {
-      console.log(error)
-    })
+    this.formPublicacao.markAllAsTouched()
+    if(this.formPublicacao.valid) {
+      const nomeImagem: number = new Date(this.imagem[0].lastModified).getTime() + Date.now() + this.imagem[0].size;
+      const publicacao: Publicacao = new Publicacao(firebase.auth().currentUser.email ,this.formPublicacao.value.titulo, this.formPublicacao.value.descricao, nomeImagem, this.imagem[0]);
+      this.bd.incluirPublicacao(publicacao).then(res => {
+        console.log('Sucesso: ', res);
+        this.activeModal.dismiss('Cross click')
+      }).catch((error:Error) => {
+        this.errorMessage = error.message;
+        console.log(error)
+      })
+    }
   }
 
   public onFileChange(event) {
