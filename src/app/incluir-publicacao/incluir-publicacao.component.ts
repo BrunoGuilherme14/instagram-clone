@@ -32,12 +32,10 @@ export class IncluirPublicacaoComponent implements OnInit {
       const nomeImagem: number = new Date(this.imagem[0].lastModified).getTime() + Date.now() + this.imagem[0].size;
       const publicacao: Publicacao = new Publicacao(firebase.auth().currentUser.email ,this.formPublicacao.value.titulo, this.formPublicacao.value.descricao, nomeImagem, this.imagem[0]);
       this.bd.incluirPublicacao(publicacao).then(res => {
-        console.log('Sucesso: ', res);
         this.activeModal.dismiss('Cross click')
         this.successMessage.emit('Publicação realizada com sucesso!');
       }).catch((error:Error) => {
         this.errorMessage = error.message
-        console.log(error)
       })
     }
   }

@@ -9,7 +9,6 @@ export class Bd {
      * incluirPublicacao
      */
     public incluirPublicacao(publicacao: Publicacao):Promise<any> {
-        console.log(publicacao)
         return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).push(publicacao).then(res =>{
             firebase.storage().ref().child(`imagens/${publicacao.nomeImagem}`).put(publicacao.imagem)
         })
