@@ -36,6 +36,7 @@
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-dark">Publicar</button>
             </div>
+            <p><ngb-progressbar *ngIf="progress" [showValue]="true" type="success" [value]="progress" [max]="100"></ngb-progressbar></p>
             <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
         </form>
     </div>

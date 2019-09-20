@@ -15,9 +15,10 @@ import { requiredFileType } from '../util/require-file-type.validator'
 export class IncluirPublicacaoComponent implements OnInit {
 
   constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal, private bd: Bd, private cd: ChangeDetectorRef) {}
-  
-  public errorMessage: string;
   @Output() successMessage: EventEmitter<string> = new EventEmitter();
+  
+  public progress: number = 0;
+  public errorMessage: string;
   public imagem: FileList;
   public formPublicacao: FormGroup = new FormGroup(
     {
@@ -32,8 +33,20 @@ export class IncluirPublicacaoComponent implements OnInit {
       const nomeImagem: number = new Date(this.imagem[0].lastModified).getTime() + Date.now() + this.imagem[0].size;
       const publicacao: Publicacao = new Publicacao(firebase.auth().currentUser.email ,this.formPublicacao.value.titulo, this.formPublicacao.value.descricao, nomeImagem, this.imagem[0]);
       this.bd.incluirPublicacao(publicacao).then(res => {
-        this.activeModal.dismiss('Cross click')
-        this.successMessage.emit('Publicação realizada com sucesso!');
+        this.bd.getProgress().subscribe(
+          (value => {
+            this.progress = value;
+            if(this.progress == 100) {
+              this.activeModal.dismiss('Cross click')
+              this.successMessage.emit('Publicação realizada com sucesso!');
+            } else if(this.progress == null) {
+              this.errorMessage = "Erro no upload de imagem!"
+            }
+          }),
+          (error:Error) => {
+            this.errorMessage = error.message
+          }
+        );
       }).catch((error:Error) => {
         this.errorMessage = error.message
       })
