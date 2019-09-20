@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private autenticacao: Autenticacao, private router:Router, private modalService: NgbModal) {
    }
+  public successMessage: string
 
   ngOnInit() {
   }
@@ -23,5 +24,8 @@ export class HomeComponent implements OnInit {
   }
   openModal() {
     const modalRef = this.modalService.open(IncluirPublicacaoComponent);
+    modalRef.componentInstance.successMessage.subscribe(message=>{
+      this.successMessage = message;
+    })
   }
 }

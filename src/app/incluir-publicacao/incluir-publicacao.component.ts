@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core'
 import { NgbModalConfig, NgbModal, NgbActiveModal  } from '@ng-bootstrap/ng-bootstrap'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Publicacao } from '../model/publicacao.model'
@@ -17,6 +17,7 @@ export class IncluirPublicacaoComponent implements OnInit {
   constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal, private bd: Bd, private cd: ChangeDetectorRef) {}
   
   public errorMessage: string;
+  @Output() successMessage: EventEmitter<string> = new EventEmitter();
   public imagem: FileList;
   public formPublicacao: FormGroup = new FormGroup(
     {
@@ -33,8 +34,9 @@ export class IncluirPublicacaoComponent implements OnInit {
       this.bd.incluirPublicacao(publicacao).then(res => {
         console.log('Sucesso: ', res);
         this.activeModal.dismiss('Cross click')
+        this.successMessage.emit('Publicação realizada com sucesso!');
       }).catch((error:Error) => {
-        this.errorMessage = error.message;
+        this.errorMessage = error.message
         console.log(error)
       })
     }
