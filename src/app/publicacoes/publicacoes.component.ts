@@ -19,8 +19,7 @@ export class PublicacoesComponent implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user:any)=>{
       this.email = user.email
-      console.log(user)
-      this.consultaPublicacoes();
+      this.consultaPublicacoes()
     })
   }
 
@@ -29,8 +28,8 @@ export class PublicacoesComponent implements OnInit {
       res.forEach((element:any, index:number) => {
         let publicacao = element.val()
         this.bd.getImagem(publicacao.nomeImagem).then((url:string)=>{
-          publicacao.urlImagem = url;
-          this.publicacoes.push(publicacao);
+          publicacao.urlImagem = url
+          this.publicacoes.push(publicacao)
         })
       });
     })
