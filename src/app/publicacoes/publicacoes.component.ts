@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Bd } from '../services/bd.service';
 import * as firebase from 'firebase';
 import { Publicacao } from '../model/publicacao.model';
+import { Usuario } from '../model/usuario.model';
 
 @Component({
   selector: 'app-publicacoes',
@@ -24,17 +25,21 @@ export class PublicacoesComponent implements OnInit {
   }
 
   public consultaPublicacoes():void {
-    this.bd.getPublicacoes(this.email).then(res =>{
-      res.forEach((element:any, index:number) => {
-        let publicacao = element.val()
-        this.publicacoes.unshift(publicacao)
-        this.bd.getImagem(publicacao.nomeImagem).then((url:string)=>{
-          this.publicacoes.map(item =>{
-            if(item.nomeImagem == publicacao.nomeImagem) item.urlImagem = url
-            return item
+    this.bd.getUsuario(this.email).then((usuario:Usuario) => {
+      this.bd.getPublicacoes(usuario.email).then(res =>{
+        res.forEach((element:any, index:number) => {
+          let publicacao = element.val()
+          publicacao.nome = usuario.nome
+          publicacao.usuario = usuario.usuario
+          this.publicacoes.unshift(publicacao)
+          this.bd.getImagem(publicacao.nomeImagem).then((url:string)=>{
+            this.publicacoes.map(item =>{
+              if(item.nomeImagem == publicacao.nomeImagem) item.urlImagem = url
+              return item
+            })
           })
         })
-      });
+      })
     })
   }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Publicacao } from '../model/publicacao.model';
 import * as firebase from 'firebase';
 import { Subject } from 'rxjs';
+import { Usuario } from '../model/usuario.model';
 
 @Injectable()
 export class Bd {
@@ -40,5 +41,10 @@ export class Bd {
     }
     public getProgress():Subject<number> {
         return this.progress
+    }
+    public getUsuario(email:string): Promise<Usuario> {
+        return firebase.database().ref(`usuario/${btoa(email)}`).once('value').then(usuario=>{
+            return usuario.val()
+        })
     }
 }
