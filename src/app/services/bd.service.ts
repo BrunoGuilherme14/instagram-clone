@@ -29,7 +29,7 @@ export class Bd {
         })
     }
     public getPublicacoes(email:string): Promise<any> {
-        return firebase.database().ref(`publicacoes/${btoa(email)}`).once('value').then((res:any) =>{
+        return firebase.database().ref(`publicacoes/${btoa(email)}`).orderByChild('datapublicacao').once('value').then((res:any) =>{
             return res
         })
     }

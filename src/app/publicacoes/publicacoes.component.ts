@@ -27,9 +27,12 @@ export class PublicacoesComponent implements OnInit {
     this.bd.getPublicacoes(this.email).then(res =>{
       res.forEach((element:any, index:number) => {
         let publicacao = element.val()
+        this.publicacoes.unshift(publicacao)
         this.bd.getImagem(publicacao.nomeImagem).then((url:string)=>{
-          publicacao.urlImagem = url
-          this.publicacoes.push(publicacao)
+          this.publicacoes.map(item =>{
+            if(item.nomeImagem == publicacao.nomeImagem) item.urlImagem = url
+            return item
+          })
         })
       });
     })
