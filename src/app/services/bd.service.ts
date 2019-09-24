@@ -28,6 +28,16 @@ export class Bd {
             )
         })
     }
+    public getPublicacoes(email:string): Promise<any> {
+        return firebase.database().ref(`publicacoes/${btoa(email)}`).once('value').then((res:any) =>{
+            return res
+        })
+    }
+    public getImagem(nomeImagem:string) : Promise<string> { 
+        return firebase.storage().ref().child(`imagens/${nomeImagem}`).getDownloadURL().then((url:string) =>{
+            return url
+        })
+    }
     public getProgress():Subject<number> {
         return this.progress
     }

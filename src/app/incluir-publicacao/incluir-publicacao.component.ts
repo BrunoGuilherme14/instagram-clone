@@ -34,7 +34,7 @@ export class IncluirPublicacaoComponent implements OnInit {
       const publicacao: Publicacao = new Publicacao(firebase.auth().currentUser.email ,this.formPublicacao.value.titulo, this.formPublicacao.value.descricao, nomeImagem, this.imagem[0]);
       this.bd.incluirPublicacao(publicacao).then(res => {
         this.bd.getProgress().subscribe(
-          (value => {
+          ((value:number) => {
             this.progress = value;
             if(this.progress == 100) {
               this.activeModal.dismiss('Cross click')
