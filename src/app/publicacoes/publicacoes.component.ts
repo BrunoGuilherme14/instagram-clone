@@ -26,10 +26,7 @@ export class PublicacoesComponent implements OnInit {
     this.bd.getUsuario(email).then((usuario:Usuario) => {
       this.bd.getPublicacoes(usuario.email).then(res =>{
         res.forEach((element:any, index:number) => {
-          let publicacao = element.val()
-          publicacao.assign
-          publicacao.nome = usuario.nome
-          publicacao.usuario = usuario.usuario
+          let publicacao = Object.assign(element.val(), usuario)
           this.publicacoes.unshift(publicacao)
           this.bd.getImagem(publicacao.nomeImagem).then((url:string)=>{
             this.publicacoes.map(item =>{
