@@ -13,22 +13,21 @@ import { Usuario } from '../model/usuario.model';
   ]
 })
 export class PublicacoesComponent implements OnInit {
-  public email:string
   public publicacoes:Array<any> = [];
   constructor(private bd:Bd) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user:any)=>{
-      this.email = user.email
-      this.consultaPublicacoes()
+      this.consultaPublicacoes(user.email)
     })
   }
 
-  public consultaPublicacoes():void {
-    this.bd.getUsuario(this.email).then((usuario:Usuario) => {
+  public consultaPublicacoes(email:string):void {
+    this.bd.getUsuario(email).then((usuario:Usuario) => {
       this.bd.getPublicacoes(usuario.email).then(res =>{
         res.forEach((element:any, index:number) => {
           let publicacao = element.val()
+          publicacao.assign
           publicacao.nome = usuario.nome
           publicacao.usuario = usuario.usuario
           this.publicacoes.unshift(publicacao)
