@@ -14,16 +14,18 @@ import { Usuario } from '../model/usuario.model';
 })
 export class PublicacoesComponent implements OnInit {
   public publicacoes:Array<any> = [];
+  private email: string;
   constructor(private bd:Bd) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user:any)=>{
-      this.consultaPublicacoes(user.email)
+      this.email = user.email;
+      this.consultaPublicacoes()
     })
   }
 
-  public consultaPublicacoes(email:string):void {
-    this.bd.getUsuario(email).then((usuario:Usuario) => {
+  public consultaPublicacoes():void {
+    this.bd.getUsuario(this.email).then((usuario:Usuario) => {
       this.bd.getPublicacoes(usuario.email).then(res =>{
         res.forEach((element:any, index:number) => {
           let publicacao = Object.assign(element.val(), usuario)
@@ -38,5 +40,4 @@ export class PublicacoesComponent implements OnInit {
       })
     })
   }
-
 }
