@@ -1,1 +1,6 @@
-<p>comentarios works!</p>
+<div class="card {{comentarioPublicacao.key}}">
+    <div class="card-body">
+        <span style="display: block; font-size: 10px; ">{{comentarioPublicacao.value.dataComentario | date: 'dd/MM/yyyy  h:mm:ss a'}}</span>
+        {{comentarioPublicacao.value.comentario}}
+    </div>
+</div>

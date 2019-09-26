@@ -13,25 +13,35 @@ export class Bd {
     public progress:Subject<number> = new Subject();
     public incluirPublicacao(publicacao: Publicacao):Promise<any> {
         return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).push(publicacao).then(res =>{
-            return firebase.storage().ref().child(`imagens/${publicacao.nomeImagem}`).put(publicacao.imagem).on(firebase.storage.TaskEvent.STATE_CHANGED, 
+            return firebase.storage().ref(`imagens/${publicacao.nomeImagem}`).put(publicacao.imagem).on(firebase.storage.TaskEvent.STATE_CHANGED, 
                 (snapshot:any)=>{
                     let valueProgress = (snapshot.bytesTransferred *100) /  snapshot.totalBytes;
                     this.progress.next(Math.round(valueProgress));
                 },
                 (error:Error) => {
                     this.progress.next(null);
-                    console.log(error)
+                    console.log('Error de imagem: ',error)
                 },
                 () => {
                     console.log("Upload completo")
-                    this.progress.next(100);
+                    this.progress.next(1000);
                 }
             )
         })
     }
+    public incluirComentario(publicacao:Publicacao): Promise<any> {
+        return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).child(`${publicacao.key}/comentarios`).push(publicacao.comentarios['key-temp']).then(comentario =>{
+            return comentario
+        })
+    }
+    public getComentarios(publicacao:Publicacao): Promise<any> {
+        return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).child(`${publicacao.key}/comentarios`).once('value').then((comentarios:any) =>{
+            return comentarios.val()
+        })
+    }
     public getPublicacoes(email:string): Promise<any> {
-        return firebase.database().ref(`publicacoes/${btoa(email)}`).orderByChild('datapublicacao').once('value').then((res:any) =>{
-            return res
+        return firebase.database().ref(`publicacoes/${btoa(email)}`).orderByChild('datapublicacao').once('value').then((publicacoes:any) =>{
+            return publicacoes
         })
     }
     public getImagem(nomeImagem:string) : Promise<string> { 

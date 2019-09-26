@@ -16,7 +16,7 @@
         </p>
 
         <hr />
-        <form [formGroup]="formComentario" (ngSubmit)="adicionarComentario()">
+        <form [formGroup]="formComentario" (ngSubmit)="adicionarComentario(publicacao)">
           <div class="form-group">
               <input 
               type="text" 
@@ -26,8 +26,9 @@
             />
           </div>
         </form>
-        
-        <app-comentarios></app-comentarios>
+        <div *ngFor="let comentarioPublicacao of publicacao.comentarios | keyvalue">
+          <app-comentarios [comentarioPublicacao]="comentarioPublicacao"></app-comentarios>
+        </div>
       </div>
     </div>
   </div>
