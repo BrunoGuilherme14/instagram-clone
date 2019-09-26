@@ -37,7 +37,6 @@ export class Bd {
     }
     public removeComentario(key:string, publicacao:Publicacao): Promise<any> {
         return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).child(`${publicacao.key}/comentarios/${key}`).remove().then((res:any) =>{
-            console.log('excluiu: ', res)
             return res
         })
     }
