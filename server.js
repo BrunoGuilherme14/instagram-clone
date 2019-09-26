@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static('./dist/instagram-clone'));
  
 app.get('/*', (req, res) => {
-    res.sendFile(path.join('./dist/instagram-clone/index.html'));
+    res.status(200).sendFile(path.join('./dist/instagram-clone/index.html'));
 });
  
 app.listen(process.env.PORT || 8080);
