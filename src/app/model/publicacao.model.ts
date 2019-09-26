@@ -1,3 +1,5 @@
+import { Comentario } from './comentario.model';
+
 export class Publicacao {
     constructor(
         public key:string,
@@ -7,6 +9,6 @@ export class Publicacao {
         public datapublicacao:number,
         public nomeImagem:number,
         public imagem:File,
-        public comentarios:Array<any>
+        public comentarios:Array<Comentario>
     ){ }
 }
