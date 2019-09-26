@@ -16,11 +16,18 @@
         </p>
 
         <hr />
-        <input 
-          type="text" 
-          class="form-control comentario"
-          placeholder="Adicione um comentário..." 
-        />
+        <form [formGroup]="formComentario" (ngSubmit)="adicionarComentario()">
+          <div class="form-group">
+              <input 
+              type="text" 
+              class="form-control comentario"
+              placeholder="Adicione um comentário..." 
+              formControlName="comentario"
+            />
+          </div>
+        </form>
+        
+        <app-comentarios></app-comentarios>
       </div>
     </div>
   </div>

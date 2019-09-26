@@ -3,6 +3,7 @@ import { Bd } from '../services/bd.service';
 import * as firebase from 'firebase';
 import { Publicacao } from '../model/publicacao.model';
 import { Usuario } from '../model/usuario.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-publicacoes',
@@ -13,8 +14,12 @@ import { Usuario } from '../model/usuario.model';
   ]
 })
 export class PublicacoesComponent implements OnInit {
+  public formComentario: FormGroup = new FormGroup({
+    comentario: new FormControl('', [Validators.maxLength(255)])
+  })
   public publicacoes:Array<any> = [];
   private email: string;
+
   constructor(private bd:Bd) { }
 
   ngOnInit() {
@@ -39,5 +44,9 @@ export class PublicacoesComponent implements OnInit {
         })
       })
     })
+  }
+
+  public adicionarComentario():void {
+    console.log(this.formComentario.value)
   }
 }

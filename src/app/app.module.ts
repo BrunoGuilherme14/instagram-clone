@@ -21,6 +21,7 @@ import { PublicacoesComponent } from './publicacoes/publicacoes.component';
 import { IncluirPublicacaoComponent } from './incluir-publicacao/incluir-publicacao.component';
 
 import {NgbModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { ComentariosComponent } from './publicacoes/comentarios/comentarios.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {NgbModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     CadastroComponent,
     HomeComponent,
     PublicacoesComponent,
-    IncluirPublicacaoComponent
+    IncluirPublicacaoComponent,
+    ComentariosComponent
   ],
   imports: [
     BrowserModule,
