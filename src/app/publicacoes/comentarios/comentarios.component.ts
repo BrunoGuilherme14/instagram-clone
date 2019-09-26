@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Comentario } from 'src/app/model/comentario.model';
 
 @Component({
   selector: 'app-comentarios',
@@ -7,9 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ComentariosComponent implements OnInit {
   @Input('comentarioPublicacao') comentarioPublicacao: any;
+  @Output() excluirComentario: EventEmitter<Comentario> = new EventEmitter<Comentario>()
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  public excluir():void {
+    this.excluirComentario.emit(this.comentarioPublicacao)
+  }
 }

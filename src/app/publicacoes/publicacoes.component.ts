@@ -53,16 +53,24 @@ export class PublicacoesComponent implements OnInit {
     if(this.formComentario.valid) {
       const comentario: Comentario = new Comentario(this.formComentario.value.comentario, Date.now())
       publicacao.comentarios? publicacao.comentarios['key-temp'] = comentario: publicacao.comentarios = []; publicacao.comentarios['key-temp'] = comentario
-      console.log(publicacao.comentarios['key-temp'])
       this.bd.incluirComentario(publicacao).then(res =>{
           this.formComentario.reset()
-          this.bd.getComentarios(publicacao).then(comentarios=>{
-            this.publicacoes.map(item =>{
-              if(item.key == publicacao.key) item.comentarios = comentarios
-              return item
-            })
-          })
+          this.recarregarComentarios(publicacao);
       })
     }
+  }
+  public excluirComentario($event:Comentario, publicacao: Publicacao):void {
+    this.bd.removeComentario($event['key'], publicacao).then(()=>{
+      this.recarregarComentarios(publicacao)
+    })
+  }
+
+  public recarregarComentarios(publicacao:Publicacao): void {
+    this.bd.getComentarios(publicacao).then(comentarios=>{
+      this.publicacoes.map(item =>{
+        if(item.key == publicacao.key) item.comentarios = comentarios
+        return item
+      })
+    })
   }
 }

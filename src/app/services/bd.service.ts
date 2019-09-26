@@ -3,6 +3,7 @@ import { Publicacao } from '../model/publicacao.model';
 import * as firebase from 'firebase';
 import { Subject } from 'rxjs';
 import { Usuario } from '../model/usuario.model';
+import { Comentario } from '../model/comentario.model';
 
 @Injectable()
 export class Bd {
@@ -32,6 +33,12 @@ export class Bd {
     public incluirComentario(publicacao:Publicacao): Promise<any> {
         return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).child(`${publicacao.key}/comentarios`).push(publicacao.comentarios['key-temp']).then(comentario =>{
             return comentario
+        })
+    }
+    public removeComentario(key:string, publicacao:Publicacao): Promise<any> {
+        return firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).child(`${publicacao.key}/comentarios/${key}`).remove().then((res:any) =>{
+            console.log('excluiu: ', res)
+            return res
         })
     }
     public getComentarios(publicacao:Publicacao): Promise<any> {

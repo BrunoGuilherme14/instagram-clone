@@ -27,7 +27,7 @@
           </div>
         </form>
         <div *ngFor="let comentarioPublicacao of publicacao.comentarios | keyvalue">
-          <app-comentarios [comentarioPublicacao]="comentarioPublicacao"></app-comentarios>
+          <app-comentarios [comentarioPublicacao]="comentarioPublicacao" (excluirComentario)="excluirComentario($event, publicacao)"></app-comentarios>
         </div>
       </div>
     </div>
