@@ -25,8 +25,10 @@ export class PublicacoesComponent implements OnInit {
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user:any)=>{
-      this.email = user.email;
-      this.consultaPublicacoes()
+      if(user) {
+        this.email = user.email;
+        this.consultaPublicacoes()
+      }
     })
   }
 

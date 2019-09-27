@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import * as firebase from 'firebase'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acesso',
@@ -36,9 +38,15 @@ export class AcessoComponent implements OnInit {
   public estadoBannerAcesso: string ='criado'
   public estadoPainel: string ='criado'
   public cadastro: boolean
-  constructor() { }
+  constructor(private router:Router) { }
 
+  
   ngOnInit() {
+    firebase.auth().onAuthStateChanged((user)=>{
+      if (user) {
+        this.router.navigate(['/home'])
+      }
+    })
   }
   public exibirCadastro($event) {
     this.cadastro = $event == 'cadastro'? true: false
