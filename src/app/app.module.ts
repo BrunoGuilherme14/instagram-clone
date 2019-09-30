@@ -14,8 +14,6 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { Autenticacao } from './services/autenticacao.service';
 import { AutenticacaoGuard } from './services/autenticacao-guard.service';
 
-import { format } from 'url';
-import { from } from 'rxjs';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './publicacoes/publicacoes.component';
 import { IncluirPublicacaoComponent } from './incluir-publicacao/incluir-publicacao.component';
